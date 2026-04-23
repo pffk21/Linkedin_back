@@ -1,0 +1,76 @@
+﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Asp_32</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Asp-32.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-primary navbar-dark py-3" style="background: linear-gradient(90deg, #6C5CE7 0%, #6C5CE7BF 75%, #A29BFE 100%);">
+            <div class="container-fluid px-5">
+                <a class="" href="/">
+                    <img src="~/images/Logo.svg" alt="logo" width="70" />
+                </a>
+
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-light rounded-pill" asp-controller="Home" asp-action="Login">Sign In</a>
+                    <a class="btn btn-outline-light rounded-pill" asp-controller="Home" asp-action="Registration">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - AspShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="authModalLabel">Вхід у систему</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="auth-form">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="user-login"><i class="bi bi-key"></i></span>
+                            <input name="user-login" type="text" class="form-control" placeholder="Логін"
+                                   aria-label="User Login" aria-describedby="user-login">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="user-password"><i class="bi bi-lock"></i></span>
+                            <input name="user-password" type="password" class="form-control" placeholder="Пароль"
+                                   aria-label="User Password" aria-describedby="user-password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" form="auth-form" class="btn btn-primary">Вхід</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

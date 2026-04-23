@@ -1,0 +1,55 @@
+﻿@model Project_X_Data.Models.LogInOut.LoginViewModel
+
+<div class="container mt-5 mb-5">
+    <div class="position-relative">
+        <img src="~/Form_img/Logo.png" alt="Logo" style="width: 96px; height: 96px; position: absolute; top: 0; left: 0; z-index: 10;" />
+    </div>
+
+    <div class="card shadow p-4 mx-auto" style="max-width: 512px;">
+        <h2 class="text-center mb-4">
+            Welcome back<br />
+            <span class="fw-bold text-primary">sign in your LinkUp account</span>
+        </h2>
+
+        <form asp-action="Login" asp-controller="Home" method="post">
+            <div class="mb-3 position-relative">
+                <label for="email" class="form-label">Email or phone number</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <img src="~/Form_img/EnvelopeSimple.png" alt="email icon" style="width: 20px;">
+                    </span>
+                    <input type="text" class="form-control border-start-0" id="email" name="Email" placeholder="Email or phone number" value="@Model?.Email" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger small position-absolute"></span>
+            </div>
+
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <img src="~/Form_img/LockKey.png" alt="lock icon" style="width: 20px;">
+                    </span>
+                    <input type="password" class="form-control border-start-0" id="password" name="Password" placeholder="Password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger small position-absolute"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Sign In</button>
+
+            <p class="text-center small mt-3">
+                Forgot your password? <a href="#">Reset password</a>
+            </p>
+
+            <div class="text-center my-3 position-relative">
+                <hr>
+                <span class="position-absolute top-50 start-50 translate-middle bg-white px-2">or</span>
+            </div>
+
+            <button type="button" class="btn btn-outline-primary w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+                Continue with Google
+            </button>
+
+            <a href="/Home/Registration" class="btn btn-outline-secondary w-100">Sign Up</a>
+        </form>
+    </div>
+</div>

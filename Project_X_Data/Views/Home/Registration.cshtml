@@ -1,0 +1,70 @@
+﻿@model Project_X_Data.Models.LogInOut.RegistrationViewModel
+
+<div class="container mt-5 mb-5">
+    <div class="position-relative">
+        <img src="~/Form_img/Logo.png" alt="Logo" style="width: 96px; height: 96px; position: absolute; top: 0; left: 0; z-index: 10;" />
+    </div>
+
+    <div class="card shadow p-4 mx-auto" style="max-width: 512px;">
+        <h2 class="text-center mb-4">
+            Create your account<br />
+            <span class="fw-bold text-primary">join LinkUp today</span>
+        </h2>
+
+        <form id="registrationForm" asp-action="Registration" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                <span asp-validation-for="FirstName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                <span asp-validation-for="LastName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Email or phone number" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="WorkingPlace" class="form-label"></label>
+                <input asp-for="WorkingPlace" class="form-control" placeholder="Working Place (optional)" />
+                <span asp-validation-for="WorkingPlace" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Location" class="form-label"></label>
+                <input asp-for="Location" class="form-control" placeholder="Location (optional)" />
+                <span asp-validation-for="Location" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ProfileImageUrl" class="form-label"></label>
+                <input asp-for="ProfileImageUrl" type="file" class="form-control" />
+                <span asp-validation-for="ProfileImageUrl" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Sign Up </button>
+
+            <p class="text-center small mt-3">
+                Already have an account? <a href="/Account/Login">Sign in</a>
+            </p>
+        </form>
+    </div>
+</div>
