@@ -5,6 +5,8 @@ namespace Project_X_Data.Data.Entities
     public class Post
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string ? ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -11,6 +11,7 @@
         public static readonly RestStatus Status401 = new() { IsOK = false, Code = 401, Phrase = "Unauthorized" };
         public static readonly RestStatus Status403 = new() { IsOK = false, Code = 403, Phrase = "Forbidden" };
         public static readonly RestStatus Status404 = new() { IsOK = false, Code = 404, Phrase = "Not Found" };
+        public static readonly RestStatus Status500 = new() { IsOK = false, Code = 500, Phrase = "Internal error" };
 
     }
 }

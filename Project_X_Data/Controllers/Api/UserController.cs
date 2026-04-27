@@ -114,7 +114,6 @@ namespace Project_X_Data.Controllers.Api
                 return Unauthorized(new { error = ex.Message });
             }
         }
-
         private (string, string) GetBasicCredentials()
         {
             string? header = HttpContext.Request.Headers.Authorization;
@@ -218,7 +217,6 @@ namespace Project_X_Data.Controllers.Api
         [HttpPost("registration")]
         public IActionResult Registration(RegistrationViewModel model)
         {
-
             RestResponse response = new();
 
             if (!ModelState.IsValid)
