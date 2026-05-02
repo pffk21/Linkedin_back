@@ -94,19 +94,25 @@ namespace Project_X_Data.Controllers.Api
         [HttpGet]
         public IActionResult GetPosts()
         {
+            string storagePrefix = "/Storage/Item/";
             RestResponse response = new();
             try
             {
                 var posts = _dataContext.Posts
                     .Include(p => p.User)
                     .OrderByDescending(p => p.CreatedAt)
-                    .Select(p => new {
+                    .Select(p => new
+                    {
                         p.Id,
                         p.Description,
-                        p.ImageUrl,
+                        ImageUrl = string.IsNullOrEmpty(p.ImageUrl)
+                            ? null
+                            : storagePrefix + p.ImageUrl,
                         p.CreatedAt,
                         AuthorName = p.User != null ? p.User.Name : "Deleted User",
-                        AuthorAvatar = p.User != null ? p.User.AvatarPhoto : null,
+                        AuthorAvatar = (p.User != null && !string.IsNullOrEmpty(p.User.AvatarPhoto))
+                            ? storagePrefix + p.User.AvatarPhoto
+                            : null,
                         AuthorRole = p.User != null ? p.User.AboitSection : "Member",
                         LikesCount = p.PostReactions != null ? p.PostReactions.Count : 0
                     })
@@ -127,6 +133,50 @@ namespace Project_X_Data.Controllers.Api
 
                 response.Status = RestStatus.Status500;
                 response.Data = "Error loading posts: " + ex.Message;
+                return StatusCode(500, response);
+            }
+        }
+
+        [HttpPost("like")]
+        public async Task<IActionResult> LikePost([FromBody] PostReactionViewModel model)
+        {
+            RestResponse response = new();
+            try
+            {
+                var existingReaction = await _dataContext.UserPostReactions
+                    .FirstOrDefaultAsync(r => r.PostId == model.PostId && r.UserId == model.UserId);
+
+                if (existingReaction != null)
+                {
+                    _dataContext.UserPostReactions.Remove(existingReaction);
+                    await _dataContext.SaveChangesAsync();
+
+                    response.Status = RestStatus.Status200;
+                    response.Data = "Post unliked";
+                    return Ok(response);
+                }
+                else
+                {
+                    var newReaction = new UserPostReaction
+                    {
+                        PostId = model.PostId,
+                        UserId = model.UserId,
+                        ReactionType = true, 
+                        CreateAt = DateTime.UtcNow
+                    };
+
+                    await _dataContext.UserPostReactions.AddAsync(newReaction);
+                    await _dataContext.SaveChangesAsync();
+
+                    response.Status = RestStatus.Status200;
+                    response.Data = "Post liked";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = RestStatus.Status500;
+                response.Data = "Error processing like: " + ex.Message;
                 return StatusCode(500, response);
             }
         }

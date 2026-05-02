@@ -11,7 +11,7 @@ using Project_X_Data.Data;
 namespace Project_X_Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260426111936_InitialCreate")]
+    [Migration("20260502082734_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -313,6 +313,9 @@ namespace Project_X_Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("PostId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreateAt")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("ReactionType")

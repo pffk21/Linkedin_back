@@ -17,5 +17,7 @@ namespace Project_X_Data.Data.Entities
         public DateTime? Deleted { get; set; }
 
 
+
+
     }
 }

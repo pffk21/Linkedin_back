@@ -259,6 +259,7 @@ namespace Project_X_Data.Migrations
                 {
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
                     PostId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ReactionType = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
